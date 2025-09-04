@@ -1,3 +1,4 @@
+#helper modul za rad s Redisom; pojednostavljuje spremanje, dohvaćanje i brisanje podataka iz Redis cache-a
 from __future__ import annotations
 import json
 from typing import Any, Optional, Callable

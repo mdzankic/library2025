@@ -1,8 +1,10 @@
+#shema ulaznih i izlaznih podataka; koristi pydantic modele da bi fastapi automatski validirao podatke i 
+# generirao openapi/swagger dokumentaciju; most između baze i api-ja
 from __future__ import annotations
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field  #baza za Pydantic modele; specijalizirani tip koji provjerava je li string valjana email adresa; omogućava dodatna pravila validacije (npr. minimalna duljina stringa)
 from typing import Optional
 
-# Auth
+# Auth (registracija)
 class UserCreate(BaseModel):
     email: EmailStr
     password: str = Field(min_length=6)
@@ -21,6 +23,7 @@ class BookBase(BaseModel):
 class BookCreate(BookBase):
     pass
 
+#update - naslov i autor također opcionalni jer ne moramo nužno ažurirati sve podatke
 class BookUpdate(BookBase):
     title: Optional[str] = None
     author: Optional[str] = None

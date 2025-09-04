@@ -1,3 +1,9 @@
+#helper modul za autentikaciju i autorizaciju.
+#Ovdje se nalaze sve pomoćne funkcije za hashiranje lozinki i rad s JWT tokenima
+#Brine se o sigurnosti korisnika; Hashira i provjerava lozinke (ne spremaju se kao običan tekst u bazi); 
+# Generira i dekodira JWT tokene za login i autorizaciju
+
+#!Servisi i funkcije za auth! ; u mapi routers su api endpointi
 from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 import jwt

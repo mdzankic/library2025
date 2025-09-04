@@ -1,13 +1,14 @@
+#govori Dockeru kako da izgradi sliku (image) aplikacije iz kojeg pokreće container (gdje aplikacija radi)
 # Python slim image
 FROM python:3.11-slim
 
 # Prevents Python from writing .pyc files
 ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONUNBUFFERED=1 
+#radni direktorij na /app
+WORKDIR /app 
 
-WORKDIR /app
-
-# System deps
+# System deps; Instalira sistemske pakete; Nakon instalacije, briše se cache
 RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     && rm -rf /var/lib/apt/lists/*
 
 # Install Python deps

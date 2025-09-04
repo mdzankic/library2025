@@ -1,8 +1,9 @@
+#definira se konekcija na MySQL, SQLAlchemy engine, session i čitanje konfiguracije iz .env datoteke
 from __future__ import annotations
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, DeclarativeBase
+from sqlalchemy import create_engine #stvara konekciju prema bazi
+from sqlalchemy.orm import sessionmaker, DeclarativeBase #kreira DB sesije (kroz koje se izvršavaju upiti)
 from pydantic_settings import BaseSettings
-from functools import lru_cache
+from functools import lru_cache #konfiguracija se ne učitava iznova svaki put već se kešira
 import os
 
 class Settings(BaseSettings):
@@ -27,13 +28,16 @@ class Settings(BaseSettings):
 def get_settings() -> Settings:
     return Settings()
 
+
+#Generira connection string za SQLAlchemy; 
+# Format: mysql+pymysql://user:password@host:port/db_name ; omogućuje aplikaciji da se spoji na MySQL.
 def get_db_url() -> str:
     s = get_settings()
     return f"mysql+pymysql://{s.MYSQL_USER}:{s.MYSQL_PASSWORD}@{s.MYSQL_HOST}:{s.MYSQL_PORT}/{s.MYSQL_DB}"
 
 engine = create_engine(
     get_db_url(),
-    pool_pre_ping=True,
+    pool_pre_ping=True, #provjerava je li konekcija živa prije korištenja (sprječava greške kod timeouta)
 )
 
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)

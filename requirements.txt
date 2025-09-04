@@ -1,11 +1,12 @@
-fastapi==0.111.0
-uvicorn==0.30.1
-SQLAlchemy==2.0.30
-PyMySQL==1.1.1
-python-dotenv==1.0.1
-passlib[bcrypt]==1.7.4
-PyJWT==2.8.0
-redis==5.0.4
-pydantic==2.7.1
-pydantic-settings==2.2.1
-cryptography==42.0.7
+#sve Python biblioteke
+fastapi==0.111.0 #Glavni web framework projekta.
+uvicorn==0.30.1 #ASGI server (pokreće FastAPI aplikaciju).
+SQLAlchemy==2.0.30 #Omogućava da s MySQL bazom radiš pomoću Python objekata i klasa (models.py) umjesto čistog SQL-a.
+PyMySQL==1.1.1 #Python driver za MySQL; SQLAlchemy ga koristi da se stvarno poveže s MySQL bazom.
+python-dotenv==1.0.1 #Čita .env datoteku.
+passlib[bcrypt]==1.7.4 #Biblioteka za sigurno hashiranje lozinki.
+PyJWT==2.8.0 #Rad s JWT (JSON Web Token); Koristi se za login/autorizaciju → generira se token nakon prijave i koristi se u Authorization: Bearer <token> headeru.
+redis==5.0.4 #keširanje rezultata upita; rasterećuje bazu
+pydantic==2.7.1 #Validacija podataka i rad sa shemama (npr. BookCreate, UserLogin).
+pydantic-settings==2.2.1 #Ekstenzija Pydantic-a za rad s konfiguracijom.
+cryptography==42.0.7 #za sigurne algoritme; Bez nje bi se javljale greške kod spajanja na MySQL ili validacije JWT-a

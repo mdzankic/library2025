@@ -1,3 +1,4 @@
+#konfiguracijski file koji opisuje više containera (API, MySQL i Redis) i kako oni surađuju.
 services:
   api:
     build: .
@@ -28,7 +29,7 @@ services:
       interval: 5s
       timeout: 3s
       retries: 20
-    volumes:
+    volumes: #Podaci iz MySQL-a se čuvaju trajno u volumenu mysql_data.
       - mysql_data:/var/lib/mysql
     restart: unless-stopped
 

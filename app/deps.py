@@ -1,3 +1,6 @@
+#helper modul za dependency injection u FastAPI-ju.
+#Glavna svrha mu je centralizirati dependencye koje koristimo u više ruta.
+#u ovom slučaju: provjera tokena i dohvaćanje trenutno prijavljenog korisnika
 from __future__ import annotations
 from fastapi import Header, HTTPException, status, Depends
 from sqlalchemy.orm import Session

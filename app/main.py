@@ -1,9 +1,11 @@
+#glavna ulazna točka aplikacije — ovdje se pokreće FastAPI, 
+# učitavaju routeri i postavlja se dokumentacija (Swagger)
 from __future__ import annotations
 from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 
 from .database import Base, engine
-from .routers import auth as auth_router, books as books_router
+from .routers import auth as auth_router, books as books_router #api endpointi
 
 # Kreiranje tablica pri startu
 Base.metadata.create_all(bind=engine)
@@ -41,8 +43,8 @@ def custom_openapi():
 app.openapi = custom_openapi
 
 # Routeri
-app.include_router(auth_router.router)
-app.include_router(books_router.router)
+app.include_router(auth_router.router) #Učitava rute iz auth.py (registracija/login) i books.py (CRUD za knjige).
+app.include_router(books_router.router) #API endpointi dostupni na /auth/... i /books/...
 
 @app.get("/", tags=["health"])
 def health():
